@@ -1,8 +1,9 @@
-// displayDetails() - a method that returns a formatted string with the product’s details.
-// getPriceWithTax() - a method that calculates the final price of the product with tax.
+export interface DiscountableProduct {
+  applyDiscount(price: number, discount: number): number;
+}
 
-class Product {
-  sku: string;
+export class Product implements DiscountableProduct {
+  private sku: string;
   name: string;
   price: number;
   constructor(sku: string, name: string, price: number) {
@@ -11,13 +12,17 @@ class Product {
     this.price = price;
   }
 
+  // displayDetails() - a method that returns a formatted string with the product’s details.
   displayDetails() {
-    let productDetails = `Sku: ${this.sku}, Name: ${this.name}, Price: ${this.price}`;
-    return productDetails;
+    return `Sku: ${this.sku}, Name: ${this.name}, Price: ${this.price}`;
   }
 
+  // getPriceWithTax() - a method that calculates the final price of the product with tax.
   getPriceWithTax() {
-    let priceWithTax = this.price * 1.08;
-    return priceWithTax;
+    return this.price * 1.08;
+  }
+
+  applyDiscount(price: number, discount: number): number {
+    return price * discount;
   }
 }
