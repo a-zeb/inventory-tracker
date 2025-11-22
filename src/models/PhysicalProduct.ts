@@ -16,4 +16,15 @@ export class PhysicalProduct extends Product {
   getWeight() {
     return `${this.weight} kg.`
   }
+
+  // Add a new feature to the inventory system: bulk discounts for physical products over a certain quantity or size.
+  getPriceWithBulkDiscount(quantity: number): number {
+    const baseTotal = this.price * quantity;
+
+    if (quantity >= 10) {
+      return baseTotal * 0.9;
+    }
+
+    return baseTotal;
+  }
 }
