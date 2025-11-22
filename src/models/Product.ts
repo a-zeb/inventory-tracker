@@ -1,11 +1,11 @@
 export interface DiscountableProduct {
-  applyDiscount(price: number, discount: number): number;
+  applyDiscount(discount: number): number;
 }
 
 export class Product implements DiscountableProduct {
   private sku: string;
-  name: string;
-  price: number;
+  protected name: string;
+  protected price: number;
   constructor(sku: string, name: string, price: number) {
     this.sku = sku;
     this.name = name;
@@ -18,11 +18,11 @@ export class Product implements DiscountableProduct {
   }
 
   // getPriceWithTax() - a method that calculates the final price of the product with tax.
-  getPriceWithTax() {
-    return this.price * 1.08;
+  getPriceWithTax(tax: number = 1) {
+    return this.price & tax
   }
 
-  applyDiscount(price: number, discount: number): number {
-    return price * discount;
+  applyDiscount(discount: number): number {
+    return this.price * discount;
   }
 }
