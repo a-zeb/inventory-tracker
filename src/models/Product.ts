@@ -4,8 +4,8 @@ export interface DiscountableProduct {
 
 export class Product implements DiscountableProduct {
   private sku: string;
-  protected name: string;
-  protected price: number;
+  public name: string;
+  public price: number;
   constructor(sku: string, name: string, price: number) {
     this.sku = sku;
     this.name = name;
